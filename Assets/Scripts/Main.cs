@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
-using System.Data;
-using System.Runtime.InteropServices;
 
-namespace CHAPTER2
+namespace AppendixA
 {
     public struct Padding
     {
@@ -14,9 +9,12 @@ namespace CHAPTER2
         public Vector4 bar2;
         public Vector4 bar3;
         public Vector4 bar4;
+        public Vector4 bar1a;
+        public Vector4 bar2a;
+        public Vector4 bar3a;
+        public Vector4 bar4a;
     }
 
-    // [StructLayout(LayoutKind.Sequential)]
     public class EnemyOOP
     {
         public Vector3 m_position;
@@ -39,7 +37,6 @@ namespace CHAPTER2
         }
     }
 
-    // [StructLayout(LayoutKind.Sequential)]
     public class EnemyOOP_DataLocality
     {
         public Vector3 m_position;
@@ -63,7 +60,6 @@ namespace CHAPTER2
         }
     }
 
-    // [StructLayout(LayoutKind.Sequential)]
     public class EnemyMove
     {
         public Vector3 m_position;
@@ -88,6 +84,9 @@ namespace CHAPTER2
         public Vector3[] Position;
         public Vector3[] Direction;
         public float[] Velocity;
+        public Padding[] Padding1;
+        public Padding[] Padding2;
+        public Padding[] Padding3;
     }
 
     public class Main : MonoBehaviour
@@ -173,9 +172,9 @@ namespace CHAPTER2
             s += "Padding size " + sizeof(Padding) + "\n";
             s += "Result:\n";
             s += "OOP \t\t\t\t" + time1.ToString("G4") + "\n";
-            s += "OOP Data Locality \t" + time2.ToString("G4") + "\t" + (time1 / time2).ToString("G1") + "x\n";
-            s += "Optimized OOP \t\t" + time3.ToString("G4") + "\t" + (time1 / time3).ToString("G1") + "x\n";
-            s += "Arrays \t\t\t" + time4.ToString("G4") + "\t" + (time1 / time4).ToString("G1") + "x\n";
+            s += "OOP Data Locality \t" + time2.ToString("G4") + "\t" + (time1 / time2).ToString("G4") + "x\n";
+            s += "Optimized OOP \t\t" + time3.ToString("G4") + "\t" + (time1 / time3).ToString("G4") + "x\n";
+            s += "Arrays \t\t\t" + time4.ToString("G4") + "\t" + (time1 / time4).ToString("G4") + "x\n";
             ResultText.text = s;
             Debug.Log(s);
         }
