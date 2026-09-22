@@ -1,8 +1,10 @@
 using UnityEngine;
 using TMPro;
+using System.Runtime.InteropServices;
 
 namespace AppendixA
 {
+    [StructLayout(LayoutKind.Sequential)]
     public struct Padding
     {
         public Vector4 bar1;
@@ -15,6 +17,7 @@ namespace AppendixA
         public Vector4 bar4a;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
     public class EnemyOOP
     {
         public Vector3 m_position;
@@ -37,6 +40,7 @@ namespace AppendixA
         }
     }
 
+    [StructLayout(LayoutKind.Sequential)]
     public class EnemyOOP_DataLocality
     {
         public Vector3 m_position;
