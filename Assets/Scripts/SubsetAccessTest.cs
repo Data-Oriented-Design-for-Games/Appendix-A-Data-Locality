@@ -95,7 +95,16 @@ namespace AppendixA
         System.Action m_wideMoveAoS,   m_wideMoveSoA;
         readonly Stopwatch m_sw = new Stopwatch();
 
+        bool m_initialized;
+
         void Awake()
+        {
+            ResultText.text = "Ready to run\n";
+        }
+
+        // Called from RunTest, not Awake: the arrays cost ~620 MB, so they are
+        // only built if this test is actually run.
+        void Init()
         {
             m_narrowMoveAoS = NarrowMoveAoS;   m_narrowMoveSoA = NarrowMoveSoA;
             m_wideSumAoS    = WideSumPositionsAoS; m_wideSumSoA  = WideSumPositionsSoA;
@@ -145,8 +154,6 @@ namespace AppendixA
                 m_wideSoA.Direction[i] = d;
                 m_wideSoA.Velocity[i]  = v;
             }
-
-            ResultText.text = "Ready to run\n";
         }
 
         // Best-of-N. Memory benchmarks are noisy upward only, so the
@@ -227,6 +234,12 @@ namespace AppendixA
 
         public unsafe void RunTest()
         {
+            if (!m_initialized)
+            {
+                Init();
+                m_initialized = true;
+            }
+
             // Settle the heap, then park the collector. Safe because the timed
             // loops allocate nothing -- if that ever stops being true, the
             // "GC delta" line below will say so.
